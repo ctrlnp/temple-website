@@ -162,12 +162,12 @@ function Upload() {
 
           <div className="form-group">
             <label htmlFor="type">Media Type</label>
-            <select id="type" name="type" value={formData.type} onChange={handleChange} disabled>
+            <select id="type" name="type" value={formData.type} onChange={handleChange}>
               <option value="image">Photos</option>
               <option value="video">Videos</option>
               <option value="mixed">Mixed (Photos & Videos)</option>
             </select>
-            <small>Auto-detected from selected files</small>
+            <small>Auto-detected from selected files (you can also select manually)</small>
           </div>
 
           <div className="form-group">
@@ -280,4 +280,3 @@ function Upload() {
 }
 
 export default Upload;
-

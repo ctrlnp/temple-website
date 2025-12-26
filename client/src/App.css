@@ -927,3 +927,341 @@ body {
     gap: 0.5rem;
   }
 }
+
+/* Seva Page */
+.seva-page {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding-bottom: 100px;
+}
+
+.seva-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 6rem 2rem 2rem;
+}
+
+.seva-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.seva-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.seva-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+.seva-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.donation-section {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  text-align: center;
+}
+
+.donation-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.donation-section p {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.qr-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.qr-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+}
+
+.qr-square {
+  background: #000000;
+  border-radius: 2px;
+}
+
+.qr-square:nth-child(2n) {
+  background: #ffffff;
+}
+
+.qr-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.qr-description {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.seva-info {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+}
+
+.seva-info h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.seva-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seva-info li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.seva-info li:last-child {
+  border-bottom: none;
+}
+
+/* Contact Page */
+.contact-page {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding-bottom: 100px;
+}
+
+.contact-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 6rem 2rem 2rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-section {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+}
+
+.info-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.info-section p {
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contact-form {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+}
+
+.contact-form h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-form-element {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-submit-btn {
+  padding: 0.875rem 1.5rem;
+  background: #e11d27;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  align-self: flex-start;
+}
+
+.contact-submit-btn:hover {
+  background: #b91c1c;
+}
+
+/* Active nav link */
+.nav-link.active {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.1);
+}
+
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Responsive styles for Seva and Contact pages */
+@media (max-width: 768px) {
+  .seva-container,
+  .contact-container {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .donation-section,
+  .seva-info {
+    padding: 1.5rem;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .qr-code {
+    width: 180px;
+    height: 180px;
+  }
+
+  .info-section {
+    padding: 1.25rem;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .seva-container,
+  .contact-container {
+    padding: 4rem 1rem 2rem;
+  }
+
+  .seva-title,
+  .contact-title {
+    font-size: 1.75rem;
+  }
+
+  .donation-section,
+  .seva-info {
+    padding: 1.25rem;
+  }
+
+  .qr-code {
+    width: 150px;
+    height: 150px;
+  }
+
+  .qr-text {
+    font-size: 1.1rem;
+  }
+
+  .qr-description {
+    font-size: 0.9rem;
+  }
+
+  .info-section {
+    padding: 1rem;
+  }
+
+  .contact-form {
+    padding: 1.25rem;
+  }
+}

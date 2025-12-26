@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Login from './pages/Login';
 import Upload from './pages/Upload';
+import Seva from './pages/Seva';
+import Contact from './pages/Contact';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/seva" element={<Seva />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/upload"

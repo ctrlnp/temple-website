@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./src/config/database');
 const path = require('path');
 const mediaRoutes = require('./src/routes/mediaRoutes');
+const authRoutes = require('./src/routes/authRoutes');
 
 // Load environment variables
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'src', 'uploads')));
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/media', mediaRoutes);
 
 // Test route

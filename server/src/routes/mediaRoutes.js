@@ -2,13 +2,14 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const Media = require('../models/Media');
+const { authenticate, isAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
 // Configure multer storage (local uploads folder)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '..', '..', 'uploads'));
+    cb(null, path.join(__dirname, '..', 'uploads'));
   },
   filename: (req, file, cb) => {
     const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -28,25 +29,40 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter });
 
-// Upload a new media item
-router.post('/', upload.single('file'), async (req, res) => {
+// Upload multiple media items (Admin only)
+router.post('/', authenticate, isAdmin, upload.array('files', 50), async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'File is required' });
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ message: 'At least one file is required' });
     }
 
-    const { title, description, eventName, type, eventDate } = req.body;
+    const { title, description, eventName, eventDate } = req.body;
 
-    const media = await Media.create({
-      title,
-      description,
-      eventName,
-      type,
-      eventDate: eventDate ? new Date(eventDate) : undefined,
-      filePath: `/uploads/${req.file.filename}`,
+    // Upload all files with the same metadata
+    const uploadedMedia = await Promise.all(
+      req.files.map(async (file) => {
+        // Auto-detect type based on file mimetype
+        const isVideo = file.mimetype.startsWith('video/');
+        const type = isVideo ? 'video' : 'image';
+
+        // Use file name as title if no title provided, or append index
+        const mediaTitle = title || file.originalname.replace(/\.[^/.]+$/, '');
+
+        return await Media.create({
+          title: mediaTitle,
+          description,
+          eventName,
+          type,
+          eventDate: eventDate ? new Date(eventDate) : undefined,
+          filePath: `/uploads/${file.filename}`,
+        });
+      })
+    );
+
+    res.status(201).json({
+      message: `Successfully uploaded ${uploadedMedia.length} file(s)`,
+      media: uploadedMedia,
     });
-
-    res.status(201).json(media);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Failed to upload media' });

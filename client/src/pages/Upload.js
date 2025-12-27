@@ -15,6 +15,8 @@ function Upload() {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState({});
   const [message, setMessage] = useState('');
+  const [youtubeAuthorized, setYoutubeAuthorized] = useState(false);
+  const [authorizingYoutube, setAuthorizingYoutube] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +44,32 @@ function Upload() {
 
   const removeFile = (index) => {
     setFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const authorizeYouTube = async () => {
+    try {
+      setAuthorizingYoutube(true);
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:5000/api/media/youtube/auth', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        // Redirect to YouTube authorization
+        window.location.href = data.authUrl;
+      } else {
+        const error = await res.json();
+        setMessage(`❌ YouTube Auth Error: ${error.message}`);
+      }
+    } catch (err) {
+      setMessage(`❌ YouTube Auth Error: ${err.message}`);
+    } finally {
+      setAuthorizingYoutube(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -121,6 +149,36 @@ function Upload() {
           <h2 className="upload-title">Upload Photos & Videos</h2>
           <p className="upload-subtitle">Add media for temple events</p>
         </div>
+
+        {/* YouTube Authorization Notice */}
+        {files.some(file => file.type.startsWith('video/')) && !youtubeAuthorized && (
+          <div className="message" style={{
+            background: '#fef3c7',
+            color: '#92400e',
+            border: '1px solid #f59e0b',
+            marginBottom: '2rem'
+          }}>
+            <strong>🎥 Video Upload Notice:</strong> To upload videos, you need to authorize YouTube access first.
+            <br />
+            <button
+              type="button"
+              onClick={authorizeYouTube}
+              disabled={authorizingYoutube}
+              style={{
+                background: '#dc2626',
+                color: 'white',
+                border: 'none',
+                padding: '0.5rem 1rem',
+                borderRadius: '0.375rem',
+                cursor: 'pointer',
+                marginTop: '0.5rem',
+                fontSize: '0.9rem'
+              }}
+            >
+              {authorizingYoutube ? 'Authorizing...' : '🔗 Authorize YouTube'}
+            </button>
+          </div>
+        )}
 
         <form className="upload-form" onSubmit={handleSubmit}>
           <div className="form-group">
@@ -255,25 +313,26 @@ function Upload() {
         </form>
       </div>
 
-      {/* Fixed bottom navigation */}
-      <nav className="bottom-nav">
-        <div className="nav-links-left">
+      {/* Fixed top navigation */}
+      <nav className="top-nav">
+        <div className="nav-links">
           <Link to="/" className="nav-link">About Us</Link>
           <Link to="/gallery" className="nav-link">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link">Contact Us</Link>
+          <button
+            type="button"
+            onClick={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              navigate('/login');
+            }}
+            className="nav-link"
+            style={{ background: 'none', border: 'none', color: '#f97316', cursor: 'pointer' }}
+          >
+            Logout
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            navigate('/login');
-          }}
-          className="nav-link-admin"
-        >
-          Logout
-        </button>
       </nav>
     </div>
   );

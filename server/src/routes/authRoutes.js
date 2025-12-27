@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const User = require('../models/User');
 const { authenticate, JWT_SECRET } = require('../middleware/auth');
 
@@ -98,5 +99,46 @@ router.get('/me', authenticate, async (req, res) => {
   });
 });
 
-module.exports = router;
+// Google OAuth routes
+router.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
 
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/admin' }),
+  (req, res) => {
+    // Successful authentication
+    const token = jwt.sign({ userId: req.user._id }, JWT_SECRET, { expiresIn: '7d' });
+
+    // Redirect to frontend with token
+    res.redirect(`http://localhost:3000/admin?token=${token}&user=${encodeURIComponent(JSON.stringify({
+      id: req.user._id,
+      username: req.user.username,
+      email: req.user.email,
+      role: req.user.role,
+      avatar: req.user.avatar
+    }))}`);
+  }
+);
+
+// Check if user is authenticated via session
+router.get('/google/status', (req, res) => {
+  if (req.isAuthenticated()) {
+    const token = jwt.sign({ userId: req.user._id }, JWT_SECRET, { expiresIn: '7d' });
+    res.json({
+      authenticated: true,
+      token,
+      user: {
+        id: req.user._id,
+        username: req.user.username,
+        email: req.user.email,
+        role: req.user.role,
+        avatar: req.user.avatar
+      }
+    });
+  } else {
+    res.json({ authenticated: false });
+  }
+});
+
+module.exports = router;

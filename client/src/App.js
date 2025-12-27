@@ -4,6 +4,7 @@ import './App.css';
 import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Login from './pages/Login';
+import Admin from './pages/Admin';
 import Upload from './pages/Upload';
 import Seva from './pages/Seva';
 import Contact from './pages/Contact';
@@ -19,6 +20,7 @@ function App() {
           <Route path="/seva" element={<Seva />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<Admin />} />
           <Route
             path="/upload"
             element={

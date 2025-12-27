@@ -138,7 +138,7 @@ function Gallery() {
                           >
                             <div className="gallery-item-image">
                               <img
-                                src={`http://localhost:5000${item.filePath}`}
+                                src={item.imageUrl || item.url}
                                 alt={item.title || 'Temple photo'}
                                 loading="lazy"
                               />
@@ -171,14 +171,12 @@ function Gallery() {
                             className="gallery-item"
                             onClick={() => openViewer(eventName, 'videos', index)}
                           >
-                            <div className="gallery-item-video">
-                              <video
-                                src={`http://localhost:5000${item.filePath}`}
-                                controls
-                                preload="metadata"
-                              >
-                                Your browser does not support the video tag.
-                              </video>
+                            <div className="gallery-item-image">
+                              <img
+                                src={item.thumbnailUrl || item.thumbnail}
+                                alt={item.title || 'Temple video'}
+                                loading="lazy"
+                              />
                               <div className="gallery-item-overlay">
                                 <span className="gallery-item-icon">▶️</span>
                               </div>
@@ -215,21 +213,17 @@ function Gallery() {
         />
       )}
 
-      {/* Fixed bottom navigation */}
-      <nav className="bottom-nav">
-        <div className="nav-links-left">
+      {/* Fixed top navigation */}
+      <nav className="top-nav">
+        <div className="nav-links">
           <Link to="/" className="nav-link">About Us</Link>
-          <Link to="/gallery" className="nav-link">Gallery</Link>
+          <Link to="/gallery" className="nav-link active">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link">Contact Us</Link>
         </div>
-        <Link to="/login" className="nav-link-admin">
-          Admin Login
-        </Link>
       </nav>
     </div>
   );
 }
 
 export default Gallery;
-

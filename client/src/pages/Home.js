@@ -17,21 +17,17 @@ function Home() {
         />
       </div>
 
-      {/* Fixed bottom navigation */}
-      <nav className="bottom-nav">
-        <div className="nav-links-left">
+      {/* Fixed top navigation */}
+      <nav className="top-nav">
+        <div className="nav-links">
           <Link to="/" className="nav-link">About Us</Link>
           <Link to="/gallery" className="nav-link">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link">Contact Us</Link>
         </div>
-        <Link to="/login" className="nav-link-admin">
-          Admin Login
-        </Link>
       </nav>
     </>
   );
 }
 
 export default Home;
-

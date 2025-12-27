@@ -41,17 +41,23 @@ function MediaViewer({ media, currentIndex, onClose, onNext, onPrevious, eventNa
         <div className="media-viewer-content">
           <div className="media-viewer-media">
             {isVideo ? (
-              <video
-                src={`http://localhost:5000${currentItem.filePath}`}
-                controls
-                autoPlay
-                className="media-viewer-video"
-              >
-                Your browser does not support the video tag.
-              </video>
+              currentItem.embedUrl ? (
+                <iframe
+                  src={currentItem.embedUrl}
+                  title={currentItem.title || 'Temple video'}
+                  className="media-viewer-video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <div className="media-viewer-video">
+                  <p>Video not available</p>
+                </div>
+              )
             ) : (
               <img
-                src={`http://localhost:5000${currentItem.filePath}`}
+                src={currentItem.imageUrl || currentItem.url}
                 alt={currentItem.title || 'Gallery image'}
                 className="media-viewer-image"
               />
@@ -89,4 +95,3 @@ function MediaViewer({ media, currentIndex, onClose, onNext, onPrevious, eventNa
 }
 
 export default MediaViewer;
-

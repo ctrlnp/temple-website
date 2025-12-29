@@ -4,7 +4,8 @@ const path = require('path');
 const fs = require('fs');
 const Media = require('../models/Media');
 const { authenticate, isAdmin } = require('../middleware/auth');
-const { uploadImageToCloudinary } = require('../config/cloudinary');
+// Ensure Cloudinary is initialized before using it
+const { cloudinary, uploadImageToCloudinary } = require('../config/cloudinary');
 const { uploadVideoToYouTube, getAuthUrl, setCredentials } = require('../config/youtube');
 
 const router = express.Router();
@@ -12,7 +13,7 @@ const router = express.Router();
 // Configure multer to store files temporarily
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const tempDir = path.join(__dirname, '..', 'temp');
+    const tempDir = path.join(__dirname, '../..', 'temp');
     // Ensure temp directory exists
     if (!fs.existsSync(tempDir)) {
       fs.mkdirSync(tempDir, { recursive: true });
@@ -67,7 +68,20 @@ router.post('/', authenticate, isAdmin, upload.array('files', 50), async (req, r
         if (type === 'image') {
           // Upload to Cloudinary
           try {
+            console.log('Processing image file:', file.originalname);
+            console.log('File path:', file.path);
+            console.log('File exists:', fs.existsSync(file.path));
+
+            if (!fs.existsSync(file.path)) {
+              throw new Error(`Uploaded file not found at path: ${file.path}`);
+            }
+
+            const stats = fs.statSync(file.path);
+            console.log('File size:', stats.size, 'bytes');
+
             const imageBuffer = fs.readFileSync(file.path);
+            console.log('Buffer size:', imageBuffer.length, 'bytes');
+
             const cloudinaryResult = await uploadImageToCloudinary(imageBuffer, file.originalname);
 
             mediaData = {

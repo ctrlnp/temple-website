@@ -22,6 +22,9 @@ console.log('  CLOUDINARY_API_SECRET:', process.env.CLOUDINARY_API_SECRET ? 'Set
 // Initialize Passport AFTER dotenv
 require('./src/config/passport');
 
+// Initialize Cloudinary AFTER dotenv
+// Cloudinary will be initialized when mediaRoutes are loaded
+
 // Connect to MongoDB
 connectDB();
 

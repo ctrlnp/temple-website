@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { isAdmin } from '../utils/auth';
 import '../App.css';
 
 function Contact() {
@@ -125,7 +126,10 @@ function Contact() {
       {/* Fixed top navigation */}
       <nav className="top-nav">
         <div className="nav-links">
-          <Link to="/" className="nav-link">About Us</Link>
+          {isAdmin() && (
+            <Link to="/upload" className="nav-link admin-dashboard">Admin Dashboard</Link>
+          )}
+          <Link to="/about" className="nav-link">About Us</Link>
           <Link to="/gallery" className="nav-link">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link active">Contact Us</Link>

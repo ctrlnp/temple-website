@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
+import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
-import Upload from './pages/Upload';
+import AdminDashboard from './pages/Upload';
 import Seva from './pages/Seva';
 import Contact from './pages/Contact';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -16,6 +17,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/seva" element={<Seva />} />
           <Route path="/contact" element={<Contact />} />
@@ -25,7 +27,7 @@ function App() {
             path="/upload"
             element={
               <ProtectedRoute>
-                <Upload />
+                <AdminDashboard />
               </ProtectedRoute>
             }
           />

@@ -110,7 +110,7 @@ function Login() {
 
       <nav className="bottom-nav">
         <div className="nav-links-left">
-          <Link to="/" className="nav-link">About Us</Link>
+          <Link to="/about" className="nav-link">About Us</Link>
           <Link to="/gallery" className="nav-link">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link">Contact Us</Link>

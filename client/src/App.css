@@ -53,7 +53,8 @@ body:has(.seva-page) .home-title {
   text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
 }
 
-body:has(.contact-page) .home-title {
+body:has(.contact-page) .home-title,
+body:has(.about-page) .home-title {
   color: #111827;
   text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
 }
@@ -98,6 +99,7 @@ body:has(.gallery-page) .top-nav,
 body:has(.upload-page) .top-nav,
 body:has(.seva-page) .top-nav,
 body:has(.contact-page) .top-nav,
+body:has(.about-page) .top-nav,
 body:has(.admin-page) .top-nav {
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -108,6 +110,7 @@ body:has(.gallery-page) .nav-link,
 body:has(.upload-page) .nav-link,
 body:has(.seva-page) .nav-link,
 body:has(.contact-page) .nav-link,
+body:has(.about-page) .nav-link,
 body:has(.admin-page) .nav-link {
   color: #374151;
 }
@@ -116,6 +119,7 @@ body:has(.gallery-page) .nav-link:hover,
 body:has(.upload-page) .nav-link:hover,
 body:has(.seva-page) .nav-link:hover,
 body:has(.contact-page) .nav-link:hover,
+body:has(.about-page) .nav-link:hover,
 body:has(.admin-page) .nav-link:hover {
   color: #f97316;
   background: rgba(249, 115, 22, 0.1);
@@ -125,6 +129,7 @@ body:has(.gallery-page) .nav-link.active,
 body:has(.upload-page) .nav-link.active,
 body:has(.seva-page) .nav-link.active,
 body:has(.contact-page) .nav-link.active,
+body:has(.about-page) .nav-link.active,
 body:has(.admin-page) .nav-link.active {
   color: #f97316;
   background: rgba(249, 115, 22, 0.1);
@@ -562,7 +567,7 @@ body:has(.admin-page) .nav-link.active {
 }
 
 .upload-container {
-  max-width: 700px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 6rem 2rem 2rem;
 }
@@ -592,27 +597,57 @@ body:has(.admin-page) .nav-link.active {
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .form-group label {
   display: block;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #374151;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-family: inherit;
   transition: border-color 0.2s ease;
+  min-height: 2.5rem;
+}
+
+/* Make specific form inputs wider and taller */
+.booking-form .form-group input[type="text"],
+.booking-form .form-group input[type="tel"],
+.booking-form .form-group input[type="date"],
+.booking-form .form-group select {
+  font-size: 1.2rem;
+  padding: 1rem 1.5rem;
+  min-height: 3.5rem;
+  border-radius: 0.6rem;
+}
+
+/* Make function type select even wider */
+.booking-form .form-group select[name="functionType"] {
+  font-size: 1.2rem;
+  padding: 1rem 1.75rem;
+  min-height: 3.5rem;
+  border-radius: 0.6rem;
+  max-width: none;
+}
+
+/* Make textarea wider and taller */
+.booking-form .form-group textarea {
+  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  min-height: 5rem;
+  border-radius: 0.6rem;
+  resize: vertical;
 }
 
 .form-group input:focus,
@@ -724,17 +759,18 @@ body:has(.admin-page) .nav-link.active {
 }
 
 .upload-button {
-  width: 100%;
-  padding: 1rem;
+  width: 50%;
+  padding: 1.25rem 2rem;
   background: #e11d27;
   color: #ffffff;
   border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  border-radius: 0.6rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  min-height: 4rem;
 }
 
 .upload-button:hover:not(:disabled) {
@@ -1232,8 +1268,8 @@ body:has(.admin-page) .nav-link.active {
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .contact-form-element {
@@ -1259,6 +1295,87 @@ body:has(.admin-page) .nav-link.active {
   background: #b91c1c;
 }
 
+/* About Page */
+.about-page {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding-bottom: 100px;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 6rem 2rem 2rem;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.about-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.about-section {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+}
+
+.about-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.about-section p {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.about-section p:last-child {
+  margin-bottom: 0;
+}
+
+.about-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-section li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.about-section li:last-child {
+  border-bottom: none;
+}
+
+.about-section strong {
+  color: #111827;
+}
+
 /* Active nav link */
 .nav-link.active {
   color: #f97316;
@@ -1269,15 +1386,32 @@ body:has(.admin-page) .nav-link.active {
   transform: translateX(-50%) scaleX(1);
 }
 
+/* Admin Dashboard Link */
+.nav-link.admin-dashboard {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: #ffffff !important;
+  font-weight: 600;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+}
+
+.nav-link.admin-dashboard:hover {
+  background: linear-gradient(135deg, #ea580c, #dc2626);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
+}
+
 /* Responsive styles for Seva and Contact pages */
 @media (max-width: 768px) {
   .seva-container,
-  .contact-container {
+  .contact-container,
+  .about-container {
     padding: 5rem 1.5rem 2rem;
   }
 
   .donation-section,
-  .seva-info {
+  .seva-info,
+  .about-section {
     padding: 1.5rem;
   }
 
@@ -1307,17 +1441,20 @@ body:has(.admin-page) .nav-link.active {
 
 @media (max-width: 480px) {
   .seva-container,
-  .contact-container {
+  .contact-container,
+  .about-container {
     padding: 4rem 1rem 2rem;
   }
 
   .seva-title,
-  .contact-title {
+  .contact-title,
+  .about-title {
     font-size: 1.75rem;
   }
 
   .donation-section,
-  .seva-info {
+  .seva-info,
+  .about-section {
     padding: 1.25rem;
   }
 
@@ -1383,4 +1520,789 @@ body:has(.admin-page) .nav-link.active {
 
 .google-icon {
   flex-shrink: 0;
+}
+
+/* Admin Dashboard Styles */
+.admin-tabs {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  color: #374151;
+  background: rgba(249, 115, 22, 0.05);
+}
+
+.tab-button.active {
+  color: #f97316;
+  border-bottom-color: #f97316;
+  background: rgba(249, 115, 22, 0.1);
+}
+
+.tab-content {
+  padding: 1rem 0;
+}
+
+.bookings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.booking-form-section h3,
+.bookings-list-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.booking-form {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 3.5rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  width: 100%;
+  max-width: 100%;
+  min-height: 600px;
+}
+
+.loading,
+.empty-bookings {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.booking-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.booking-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  flex: 1;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-confirmed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-completed {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.booking-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.booking-details strong {
+  color: #111827;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.status-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.status-btn.confirm {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-btn.confirm:hover {
+  background: #a7f3d0;
+}
+
+.status-btn.cancel {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-btn.cancel:hover {
+  background: #fecaca;
+}
+
+.status-btn.complete {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.status-btn.complete:hover {
+  background: #c7d2fe;
+}
+
+/* QR Code Management Styles */
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.qr-form-section h3,
+.qr-list-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.qr-form {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.qr-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.qr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.qr-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  flex: 1;
+}
+
+.qr-status {
+  margin-left: 1rem;
+}
+
+.status-active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-inactive {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.qr-image-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.qr-image {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  border: 2px solid #e5e7eb;
+}
+
+.qr-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.qr-description {
+  font-style: italic;
+  color: #6b7280;
+}
+
+.qr-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 80px;
+}
+
+.action-btn.edit {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.action-btn.edit:hover {
+  background: #bfdbfe;
+}
+
+.action-btn.activate {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.action-btn.activate:hover {
+  background: #a7f3d0;
+}
+
+.action-btn.deactivate {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.action-btn.deactivate:hover {
+  background: #fecaca;
+}
+
+.action-btn.delete {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.action-btn.delete:hover {
+  background: #fde68a;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cancel-button {
+  padding: 1rem;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.empty-qr {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* Updated QR Code Display in Seva Page */
+.qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+
+.qr-amount {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f97316;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.qr-event {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Admin controls in Seva page */
+.admin-controls {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.refresh-btn {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.refresh-btn:hover {
+  background: #ea580c;
+}
+
+.admin-controls small {
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+/* Booking Calendar Styles */
+.booking-section {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr;
+  gap: 2.5rem;
+  align-items: start;
+  justify-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.calendar-section h3,
+.booking-form-section h3 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.booking-calendar,
+.booking-calendar-multi {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 100%;
+}
+
+.booking-calendar-multi {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.calendar-month {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: #fafafa;
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-header h4 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.125rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-day-header {
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 0.9rem;
+  background: #f9fafb;
+  border-radius: 0.25rem;
+}
+
+.calendar-day {
+  padding: 0.5rem 0.25rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day:hover {
+  background: #f3f4f6;
+}
+
+.calendar-day-active {
+  color: #111827;
+}
+
+.calendar-day-active:hover {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.calendar-day-past {
+  color: #d1d5db;
+  cursor: not-allowed;
+  background: #f9fafb;
+}
+
+.calendar-day-booked {
+  background: #fee2e2;
+  color: #991b1b;
+  cursor: not-allowed;
+}
+
+.calendar-day-booked:hover {
+  background: #fecaca;
+}
+
+.calendar-day-selected {
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 600;
+  border: 2px solid #3b82f6;
+}
+
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.legend-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+}
+
+/* Calendar Navigation - Compact */
+.calendar-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  border: 1px solid #e5e7eb;
+}
+
+.calendar-navigation h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.nav-button {
+  background: #e11d27;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.nav-button:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Weekly Events Styles */
+.weekly-events-section {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.weekly-events-section h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.weekly-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.weekly-event-item {
+  background: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 0.2s ease;
+}
+
+.weekly-event-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.event-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.event-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.event-status.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.event-status.confirmed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.event-details p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.event-details strong {
+  color: #111827;
+}
+
+.event-address {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-style: italic;
+}
+
+.no-events {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.no-events p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.legend-color.available {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+}
+
+.legend-color.booked {
+  background: #fee2e2;
+}
+
+.legend-color.selected {
+  background: #dbeafe;
+  border: 2px solid #3b82f6;
+}
+
+.date-available {
+  color: #065f46;
+  font-weight: 500;
+}
+
+.date-unavailable {
+  color: #991b1b;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .booking-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .booking-calendar-multi {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .calendar-month {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    gap: 0.125rem;
+  }
+
+  .calendar-day {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
+    min-height: 2rem;
+  }
+
+  .calendar-legend {
+    gap: 1rem;
+  }
+
+  .legend-item {
+    font-size: 0.8rem;
+  }
+}
+
+/* Responsive for bookings */
+@media (max-width: 768px) {
+  .bookings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .booking-actions {
+    flex-direction: column;
+  }
+
+  .status-btn {
+    width: 100%;
+  }
 }

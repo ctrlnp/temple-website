@@ -7,9 +7,17 @@ const connectDB = require('./src/config/database');
 const path = require('path');
 const mediaRoutes = require('./src/routes/mediaRoutes');
 const authRoutes = require('./src/routes/authRoutes');
+const bookingRoutes = require('./src/routes/bookingRoutes');
+const qrRoutes = require('./src/routes/qrRoutes');
 
 // Load environment variables FIRST
 dotenv.config();
+
+// Log Cloudinary config status
+console.log('🔧 Cloudinary Configuration Check:');
+console.log('  CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME ? `"${process.env.CLOUDINARY_CLOUD_NAME}"` : 'Not set');
+console.log('  CLOUDINARY_API_KEY:', process.env.CLOUDINARY_API_KEY ? 'Set' : 'Not set');
+console.log('  CLOUDINARY_API_SECRET:', process.env.CLOUDINARY_API_SECRET ? 'Set' : 'Not set');
 
 // Initialize Passport AFTER dotenv
 require('./src/config/passport');
@@ -49,6 +57,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'src', 'uploads')));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/media', mediaRoutes);
+app.use('/api/booking', bookingRoutes);
+app.use('/api/qr', qrRoutes);
 
 // Test route
 app.get('/', (req, res) => {

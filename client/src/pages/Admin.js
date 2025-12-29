@@ -94,7 +94,8 @@ function Admin() {
 
       <nav className="top-nav">
         <div className="nav-links">
-          <a href="/" className="nav-link">About Us</a>
+          <a href="/" className="nav-link">Home</a>
+          <a href="/about" className="nav-link">About Us</a>
           <a href="/gallery" className="nav-link">Gallery</a>
           <a href="/seva" className="nav-link">Seva</a>
           <a href="/contact" className="nav-link">Contact Us</a>

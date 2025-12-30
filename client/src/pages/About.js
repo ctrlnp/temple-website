@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { isAdmin } from '../utils/auth';
+import ThemeToggle from '../components/ThemeToggle';
 import '../App.css';
 
 function About() {
@@ -88,6 +89,7 @@ function About() {
           <Link to="/gallery" className="nav-link">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link">Contact Us</Link>
+          <ThemeToggle />
         </div>
       </nav>
     </div>

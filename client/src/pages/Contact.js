@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { isAdmin } from '../utils/auth';
+import ThemeToggle from '../components/ThemeToggle';
 import '../App.css';
 
 function Contact() {
@@ -133,6 +134,7 @@ function Contact() {
           <Link to="/gallery" className="nav-link">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link active">Contact Us</Link>
+          <ThemeToggle />
         </div>
       </nav>
     </div>

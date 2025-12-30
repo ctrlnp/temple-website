@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout, isAdmin } from '../utils/auth';
+import ThemeToggle from '../components/ThemeToggle';
 import '../App.css';
 
 // BookingCalendarNavigation Component
@@ -837,18 +838,21 @@ function AdminDashboard() {
           <button
             className={`tab-button ${activeTab === 'upload' ? 'active' : ''}`}
             onClick={() => setActiveTab('upload')}
+            data-tab="upload"
           >
             📸 Media Upload
           </button>
           <button
             className={`tab-button ${activeTab === 'bookings' ? 'active' : ''}`}
             onClick={() => setActiveTab('bookings')}
+            data-tab="bookings"
           >
             💒 Hall Booking Management
           </button>
           <button
             className={`tab-button ${activeTab === 'qr' ? 'active' : ''}`}
             onClick={() => setActiveTab('qr')}
+            data-tab="qr"
           >
             💰 QR Code Management
           </button>
@@ -1428,6 +1432,7 @@ function AdminDashboard() {
           >
             Logout
           </button>
+          <ThemeToggle />
         </div>
       </nav>
     </div>

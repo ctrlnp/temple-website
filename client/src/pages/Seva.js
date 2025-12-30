@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { isAdmin } from '../utils/auth';
+import ThemeToggle from '../components/ThemeToggle';
 import '../App.css';
 
 function Seva() {
@@ -198,6 +199,7 @@ function Seva() {
           <Link to="/gallery" className="nav-link">Gallery</Link>
           <Link to="/seva" className="nav-link active">Seva</Link>
           <Link to="/contact" className="nav-link">Contact Us</Link>
+          <ThemeToggle />
         </div>
       </nav>
     </div>

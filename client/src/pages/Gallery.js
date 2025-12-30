@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MediaViewer from '../components/MediaViewer';
 import { isAdmin } from '../utils/auth';
+import ThemeToggle from '../components/ThemeToggle';
 import '../App.css';
 
 function Gallery() {
@@ -224,6 +225,7 @@ function Gallery() {
           <Link to="/gallery" className="nav-link active">Gallery</Link>
           <Link to="/seva" className="nav-link">Seva</Link>
           <Link to="/contact" className="nav-link">Contact Us</Link>
+          <ThemeToggle />
         </div>
       </nav>
     </div>
